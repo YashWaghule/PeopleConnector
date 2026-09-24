@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart Community Connect</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="resident">
+
+<!-- Sidebar navigation -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">🏘 Smart Community Connect</div>
+  <nav id="nav">
+    <button data-section="dashboard" class="active">🏠 Dashboard</button>
+    <button data-section="announcements">📢 Announcements</button>
+    <button data-section="report">🛠 Report Issue</button>
+    <button data-section="tracking">📋 Issue Tracking</button>
+    <button data-section="polls">📊 Polls</button>
+    <button data-section="activities">🤝 Activities</button>
+    <button data-section="feedback">💬 Feedback</button>
+    <button data-section="management" class="mgmt-only">⚙️ Management</button>
+  </nav>
+</aside>
+
+<div class="content">
+  <!-- Top header -->
+  <header class="topbar">
+    <button id="menuBtn" aria-label="Open menu">☰</button>
+    <h1 id="pageTitle">Dashboard</h1>
+    <div class="toggle">
+      <button id="viewResident" class="active">Resident</button>
+      <button id="viewManagement">Management</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Dashboard -->
+    <section id="dashboard" class="view active">
+      <div class="welcome card">
+        <h2>Welcome back, Resident 👋</h2>
+        <p>Report issues, vote in polls, volunteer and stay updated with your community.</p>
+      </div>
+      <div id="stats" class="grid stats"></div>
+      <div class="grid two">
+        <div class="card"><h3>📢 Recent Announcements</h3><div id="dashAnnouncements"></div></div>
+        <div class="card"><h3>🛠 Recent Issues</h3><div id="dashIssues"></div></div>
+      </div>
+      <div class="card"><h3>🤝 Upcoming Activities &amp; Volunteer Opportunities</h3><div id="dashActivities"></div></div>
+    </section>
+
+    <!-- 6. Announcements -->
+    <section id="announcements" class="view">
+      <div id="announcementList" class="grid two"></div>
+    </section>
+
+    <!-- 2. Report an issue -->
+    <section id="report" class="view">
+      <form id="issueForm" class="card form">
+        <h3>Report an Issue</h3>
+        <label>Issue title<input id="iTitle" required maxlength="80" placeholder="e.g. Street light not working"></label>
+        <div class="grid two">
+          <label>Category<select id="iCategory" required></select></label>
+          <label>Priority
+            <select id="iPriority" required>
+              <option>Low</option><option selected>Medium</option><option>High</option>
+            </select>
+          </label>
+        </div>
+        <label>Location<input id="iLocation" required placeholder="e.g. Block B, Parking area"></label>
+        <label>Description<textarea id="iDesc" rows="4" required placeholder="Describe the problem in detail"></textarea></label>
+        <button class="btn" type="submit">Submit Issue</button>
+      </form>
+    </section>
+
+    <!-- 3. Issue tracking -->
+    <section id="tracking" class="view">
+      <div class="card filters">
+        <input id="search" type="search" placeholder="🔍 Search issues...">
+        <select id="fStatus"><option value="">All Status</option></select>
+        <select id="fCategory"><option value="">All Categories</option></select>
+        <select id="fPriority"><option value="">All Priorities</option><option>Low</option><option>Medium</option><option>High</option></select>
+      </div>
+      <div id="issueList" class="grid two"></div>
+    </section>
+
+    <!-- 4. Polls -->
+    <section id="polls" class="view">
+      <div id="pollList" class="grid two"></div>
+    </section>
+
+    <!-- 5. Activities -->
+    <section id="activities" class="view">
+      <div id="activityList" class="grid two"></div>
+    </section>
+
+    <!-- 7. Feedback -->
+    <section id="feedback" class="view">
+      <form id="feedbackForm" class="card form">
+        <h3>Share Your Feedback</h3>
+        <label>Name<input id="fbName" required placeholder="Your name"></label>
+        <div class="grid two">
+          <label>Feedback category<select id="fbCategory" required></select></label>
+          <label>Rating
+            <select id="fbRating" required>
+              <option value="5">5 - Excellent</option><option value="4">4 - Good</option>
+              <option value="3">3 - Average</option><option value="2">2 - Poor</option><option value="1">1 - Very Poor</option>
+            </select>
+          </label>
+        </div>
+        <label>Message<textarea id="fbMessage" rows="4" required placeholder="Tell us what you think"></textarea></label>
+        <button class="btn" type="submit">Submit Feedback</button>
+      </form>
+    </section>
+
+    <!-- 8. Management -->
+    <section id="management" class="view">
+      <div class="card"><div class="row"><h3>Reported Issues</h3><button id="resetBtn" class="btn ghost">Reset Demo Data</button></div><div id="mgmtIssues"></div></div>
+      <div class="grid two">
+        <div class="card"><h3>Poll Results</h3><div id="mgmtPolls"></div></div>
+        <div class="card"><h3>Volunteer Participation</h3><div id="mgmtVolunteers"></div></div>
+      </div>
+      <div class="card"><h3>Resident Feedback</h3><div id="mgmtFeedback"></div></div>
+    </section>
+  </main>
+</div>
+
+<!-- Modal dialog -->
+<div id="modal" class="modal hidden">
+  <div class="modal-box"><button id="modalClose" class="close" aria-label="Close">×</button><div id="modalBody"></div></div>
+</div>
+<!-- Toast notifications -->
+<div id="toasts"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
